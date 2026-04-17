@@ -11,13 +11,24 @@ description = 'mcp-demo'
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
-        // Spring AI 밀리스톤 레포
-        maven { url 'https://repo.spring.io/milestone' }
     }
 }
 
 repositories {
     mavenCentral()
+    // Spring AI 밀리스톤 레포
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+    set('springAiVersion', '1.0.0-M6')
+}
+
+dependencyManagement {
+    imports {
+        // Spring AI BOM
+        mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+    }
 }
 
 dependencies {
@@ -38,12 +49,6 @@ dependencies {
 
 }
 
-dependencyManagement {
-    imports {
-        // Spring AI BOM
-        mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
-    }
-}
 
 tasks.named('test') {
     useJUnitPlatform()
