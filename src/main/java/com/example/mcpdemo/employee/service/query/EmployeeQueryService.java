@@ -6,11 +6,13 @@ import com.example.mcpdemo.employee.dto.result.EmployeeResult;
 import com.example.mcpdemo.employee.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class EmployeeQueryService {
 
     private final EmployeeRepository employeeRepository;
