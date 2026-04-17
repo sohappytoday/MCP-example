@@ -2,4 +2,18 @@
 *.bat text eol=crlf
 *.jar binary
 ./HELP.md
-./.gitattributes
+.gitattributes
+
+# 빌드 결과물
+build/
+.gradle/
+
+# IDE 설정
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# 환경변수/시크릿
+*.env
+application-secret.yml
