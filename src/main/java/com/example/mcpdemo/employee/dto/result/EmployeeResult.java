@@ -3,9 +3,11 @@ package com.example.mcpdemo.employee.dto.result;
 import com.example.mcpdemo.employee.domain.Employee;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @Builder
+@ToString
 public class EmployeeResult {
     String name;
     String department;
