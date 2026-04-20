@@ -1,11 +1,12 @@
 package com.example.mcpdemo.config;
 
+
 import com.example.mcpdemo.employee.mcp.command.EmployeeCommandMcpTools;
 import com.example.mcpdemo.employee.mcp.query.EmployeeQueryMcpTools;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ai.tool.ToolCallback;
-import org.springframework.ai.tool.ToolCallbacks;
+import org.springframework.ai.tool.ToolCallbackProvider;
+import org.springframework.ai.tool.method.MethodToolCallbackProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,11 +23,11 @@ public class McpServerConfig {
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
     }
+
     @Bean
-    public List<ToolCallback> employeeTools() {
-        return List.of(ToolCallbacks.from(
-                employeeQueryMcpTools,
-                employeeCommandMcpTools
-        ));
+    public ToolCallbackProvider employeeTools() {
+        return MethodToolCallbackProvider.builder()
+                .toolObjects(employeeQueryMcpTools, employeeCommandMcpTools)
+                .build();
     }
 }
